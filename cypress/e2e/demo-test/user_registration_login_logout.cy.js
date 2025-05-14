@@ -1,4 +1,3 @@
-import testData from '../../fixtures/registration.json';
 import { faker } from '@faker-js/faker';
 describe('Registration Test', () => {
     let email;
