@@ -1,8 +1,11 @@
+
 export class AddToCartPage{
     locators = {
         searchBox: "input[placeholder='Search']",
         searchButton: ".btn.btn-default.btn-lg",
-        productList: ".product-thumb"
+        productList: ".product-thumb",
+        addToCartButton: ".button-group button .fa.fa-shopping-cart",
+        successAlert: ".alert.alert-success",
     }
     enterSearchText(text){
         cy.get(this.locators.searchBox).type(text);
@@ -12,5 +15,11 @@ export class AddToCartPage{
     }
     getProductList(){
         return cy.get(this.locators.productList);
+    }
+    clickAddToCartButton(){
+        cy.get(this.locators.addToCartButton).click();
+    }
+    getSuccessAlert(){
+        return cy.get(this.locators.successAlert);
     }
 }
