@@ -16,11 +16,9 @@ describe('Add a product to the cart', () => {
         const productName = 'MacBook Pro';
         addToCartPage.enterSearchText('Macbook');
         addToCartPage.clickSearchButton();
-        addToCartPage.getProductList().each((el, index) => {
-            if (el.text().includes(productName)) {
-                cy.wrap(el).find(addToCartPage.locators.addToCartButton).click();
-                addToCartPage.getSuccessAlert().should('contain', `Success: You have added ${productName} to your shopping cart!`);
-            }
+        addToCartPage.getProductList().filter(`:contains(${productName})`).then($product=>{
+            cy.wrap($product).contains('button','Add to Cart').click()
         })
+        addToCartPage.getSuccessAlert().should('contain','Success: You have added '+productName+' to your shopping cart!')
     })
 });
